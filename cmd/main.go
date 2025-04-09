@@ -1,10 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
+
+	"go.uber.org/zap/zapcore"
 
 	"kqueuey"
 )
@@ -17,14 +18,14 @@ func main() {
 	flagOpts.Parse()
 
 	logger := flagOpts.Logging.NewLogger()
-	c, err := kqueuey.LoadConfiguration(flagOpts, logger)
-	if err != nil {
-		logger.Error(err.Error())
-		panic(err)
-	}
+	zapcore.NewTee
+	//c, err := kqueuey.LoadConfiguration(flagOpts, logger)
+	//if err != nil {
+	//	logger.Error(err.Error())
+	//	panic(err)
+	//}
 
 	logger.Info("config file set up")
-	fmt.Println(c)
 
 	go awaitTerminated(done)
 	<-done
